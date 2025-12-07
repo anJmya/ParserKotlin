@@ -8,13 +8,15 @@ import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
 
 fun main() {
-    val doc: Document = Jsoup.connect("https://en.wikipedia.org/").get()
-    // println(doc.title())
+    val doc: Document =
+        Jsoup
+            .connect(
+                "https://mybook.ru/author/duglas-adams/avtostopom-po-galaktike-restoran-u-konca-vselennoj/citations/",
+            ).get()
 
-    val newsHeadlines: Elements = doc.select("#mp-itn b a")
-    // println(newsHeadlines)
+    val quotes: Elements = doc.select(".cOOA-do .ccmjFA .bzpNIu")
 
-    for (headline: Element in newsHeadlines) {
-        println("${headline.attr("title")}\n\t${headline.absUrl("href")}")
+    for (quote: Element in quotes) {
+        println(quote.text())
     }
 }
